@@ -1,0 +1,15 @@
+name: commit-validation
+on: [push, pull_request, workflow_dispatch]
+
+jobs:
+  check-validation:
+    runs-on: ubuntu-latest
+    name: Check commit signing
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Check commit
+        uses: PopcornPalace/commit-validation-action@main
+        id: check-commit
+      - name: Show check-commit
+        run: echo "${{ steps.check-commit.outputs.commit }}"
