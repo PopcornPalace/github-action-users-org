@@ -1,0 +1,21 @@
+name: Check Repository Permissions
+description: Check repository permissions of all users in a GitHub organization
+author: Valentyn Nastenko
+inputs:
+  organization:
+    description: 'Name of the GitHub organization to check repository permissions'
+    required: true
+  token:
+    description: 'GitHub token with `repo` and `org:read` scopes'
+    required: true
+  exclude-file-path:
+    description: 'Path to file with excluded users in format repository, login'
+    required: false
+outputs:
+  userscsv:
+    description: 'CSV file with all users and their permissions in all repositories'
+  adminscsv:
+    description: 'CSV file with all users who have admin permissions in any repository'
+runs:
+  using: 'node16'
+  main: 'dist/index.js'
